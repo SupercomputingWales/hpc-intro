@@ -31,7 +31,7 @@ purpose, and are used to accomplish tasks that might otherwise be too big for an
 
 ## Logging in
 
-Go ahead and log in to the Falcon cluster: {{ site.host_name }} at {{ site.host_location }}.
+Go ahead and log in to the Falcon cluster: {{ site.host_name }} at {{ site.host_location }}. Please note that for the command below to work as expected it needs to be run within the university campus, or you need to enable the [Cardiff VPN client](https://intranet.cardiff.ac.uk/staff/supporting-your-work/it-support/wireless-and-remote-access/off-campus-access/virtual-private-network-vpn).
 ```
 {{ site.local_prompt }} ssh yourUsername@{{ site.host_login }}
 ```
