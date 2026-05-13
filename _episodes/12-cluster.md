@@ -55,11 +55,11 @@ your password. But watch out, the characters you type are not displayed on the s
 > 
 > ```
 > Host Falcon
-> Hostname falconlogin.cf.ac.uk
-> User c.username
-> IdentityFile ~/.ssh/id_rsa-falcon
-> ForwardX11 yes
-> ForwardX11Trusted yes
+>   Hostname falconlogin.cf.ac.uk
+>   User c.username
+>   IdentityFile ~/.ssh/id_rsa-falcon
+>   ForwardX11 yes
+>   ForwardX11Trusted yes
 > ```
 > {: .code}
 > 
