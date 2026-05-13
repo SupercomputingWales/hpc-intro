@@ -1,13 +1,13 @@
 `srun` runs a single command on the cluster and then exits. Let's demonstrate this by running the
 `hostname` command with `srun`. (We can cancel an `srun` job with `Ctrl-c`.)
 
-Hawk:
+Falcon:
 ```
 {{ site.host_prompt }} srun {{ site.sched_submit_options }} hostname
 ```
 {: .bash}
 ```
-ccs9002
+cca0019.falcon.supercomputingwales.ac.uk
 ```
 {: .output}
 Sunbird:
@@ -24,7 +24,7 @@ scs0100.sunbird.supercomputingwales.ac.uk
 script, these options are specified on the command-line when starting a job. To submit a job that
 uses 2 CPUs for instance, we could use the following command:
 
-Hawk:
+Falcon:
 ```
 {{ site.host_prompt }} srun {{ site.sched_submit_options }} -c 2 echo "This job will use 2 CPUs."
 ```
