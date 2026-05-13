@@ -74,19 +74,19 @@ instructor_post_survey: "https://www.surveymonkey.com/r/instructor_training_post
 #   and:
 #     cp -r _extras/snippet_library/EPCC_Cirrus_pbs/* _includes/snippets
 #
-host_name: "cl1"
+host_name: "clf1"
 host_name2: "sl2.sunbird.supercomputingwales.ac.uk"
-host_login: "hawklogin.cf.ac.uk"
+host_login: "falconlogin.cf.ac.uk"
 host_login2: "sunbird.swansea.ac.uk"
 host_location: "Cardiff University"
 host_location2: "Swansea University"
-host_homedir: "/home"
-host_prompt: "[yourUsername@cl1 ~]$"
+host_homedir: "/shared/home1"
+host_prompt: "[yourUsername@clf1 ~]$"
 host_prompt2: "[yourUsername@sl2(Sunbird) ~]$"
 local_prompt: "[user@laptop ~]$"
 sched_name: "SLURM"
 sched_submit: "sbatch"
-sched_submit_options: "-p c_compute_mdi1 -A scw1148"
+sched_submit_options: "-p htc_genoa -A SCWF00004"
 sched_submit_options2: "-p compute -A scw2196"
 sched_status: "squeue"
 sched_flag_user: "-u yourUsername"
@@ -101,7 +101,7 @@ sched_flag_histdetail: "-l -j"
 
 # Interactive queue names, one or more as a list
 workshop_interactive_queues:
-  - c_compute_mdi1
+  - htc_genoa
   - dev
 
 # Start time in minutes (0 to be clock-independent, 540 to show a start at 09:00 am).
