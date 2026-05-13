@@ -7,7 +7,7 @@ Due to the possibility to submit many hundreds of jobs, to get access to job arr
 us with the maximum number of job arrays you may want to submit.  This will add you and your project code to a Quality of Service (QOS) in SLURM
 to special limits for your particular job array request.
 
-Hawk:
+Falcon:
 ```
 [{{ site.host_prompt }} {{ site.sched_submit }} {{ site.sched_submit_options }} --array=1-10 example-job.sh
 ```
@@ -30,10 +30,11 @@ This will submit the job 10 times.
 {: .bash}
 ```
              JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-        16574785_1 c_compute new_name c.userna  R       0:38      1 ccs9002
-        16574785_2 c_compute new_name c.userna  R       0:38      1 ccs9002
-        ...
-        16574785_10 c_compute new_name c.userna  R       0:38      1 ccs9002
+     332225_[5-10] htc_genoa example- c.c10458 PD       0:00      1 (QOSMaxJobsPerUserLimit)
+          332225_1 htc_genoa example- c.c10458  R       0:01      1 cca0018
+          332225_2 htc_genoa example- c.c10458  R       0:01      1 cca0019
+          332225_3 htc_genoa example- c.c10458  R       0:01      1 cca0019
+          332225_4 htc_genoa example- c.c10458  R       0:01      1 cca0019
 ```
 {: .output}
 
@@ -51,7 +52,7 @@ Using the above variables in a job script gives you variable you can use to poin
 #!/bin/bash
 
 #SBATCH -J arraytest
-#SBATCH --array=0-4
+#SBATCH --array=1-4
 #SBATCH -o output-%A_%a-%J.o
 #SBATCH -n 1
 
@@ -64,13 +65,13 @@ echo SLURM_ARRAY_TASK_ID $SLURM_ARRAY_TASK_ID
 Submitting the above job script will result in output for each job in the array with unique values.
 
 ```
-SLURM_JOB_ID 232
-SLURM_ARRAY_JOB_ID 231
-SLURM_ARRAY_TASK_ID 0
-
-SLURM_JOB_ID 233
-SLURM_ARRAY_JOB_ID 231
+SLURM_JOB_ID 332233
+SLURM_ARRAY_JOB_ID 332232
 SLURM_ARRAY_TASK_ID 1
+
+SLURM_JOB_ID 332234
+SLURM_ARRAY_JOB_ID 332232
+SLURM_ARRAY_TASK_ID 2
 ...
 ```
 {: .output}
