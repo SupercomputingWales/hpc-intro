@@ -38,4 +38,4 @@ This will allow easy file transfer to and from the remote systems.
 
 This course is especially useful for user joining Hawk and therefore it is assumed 
 that you already have a user account. If you don't, you can easily request one
-following the instructions in our [portal](https://portal.supercomputing.wales/index.php/getting-access/).
+following the instructions in our [portal](https://wiki.arcca.cf.ac.uk/index.php/New_User_Falcon_Registration).
