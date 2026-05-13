@@ -58,7 +58,7 @@ scheduler to run the job is called *batch job submission*.
 > provides information on what research is used which resources.  It allows
 > for focussing attention on certain projects if issues are spotted.
 >
-> Can you find your available project codes on [mySCW](https://my.supercomputing.wales)?
+> Can you find your available project codes on [Coldfront](https://coldfront.cf.ac.uk/)?
 {: .challenge}
 
 
@@ -82,9 +82,10 @@ run as a test.
 
 If you completed the previous challenge successfully, you probably realise that there is a
 distinction between running the job through the scheduler and just "running it". To submit this job
-to the scheduler, we use the `{{ site.sched_submit }}` command.
+to the scheduler, we use the `{{ site.sched_submit }}` command. Don't forget to substitue the
+project account code with your own.
 
-Hawk:
+Falcon:
 ```
 [{{ site.host_prompt }} {{ site.sched_submit }} {{ site.sched_submit_options }} example-job.sh
 ```
