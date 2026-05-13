@@ -136,7 +136,7 @@ many shapes and sizes, but generally are dedicated to long or hard tasks that re
 computational resources.
 
 All interaction with the worker nodes is handled by a specialized piece of software called a
-scheduler (the scheduler used in this lesson is called {{ site.workshop_sched_name }}). We'll
+scheduler (the scheduler used in this lesson is called {{ site.sched_name }}). We'll
 learn more about how to use the scheduler to submit jobs next, but for now, it can also tell us
 more information about the worker
 nodes.
