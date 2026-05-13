@@ -31,7 +31,7 @@ purpose, and are used to accomplish tasks that might otherwise be too big for an
 
 ## Logging in
 
-Go ahead and log in to the Hawk cluster: {{ site.host_name }} at {{ site.host_location }}.
+Go ahead and log in to the Falcon cluster: {{ site.host_name }} at {{ site.host_location }}.
 ```
 {{ site.local_prompt }} ssh yourUsername@{{ site.host_login }}
 ```
@@ -54,10 +54,10 @@ your password. But watch out, the characters you type are not displayed on the s
 > On a Mac/Linux laptop/desktop you can add settings to `$HOME/.ssh/config` such as:
 > 
 > ```
-> Host hawk
-> Hostname hawklogin.cf.ac.uk
+> Host Falcon
+> Hostname falconlogin.cf.ac.uk
 > User c.username
-> IdentityFile ~/.ssh/id_rsa-hawk
+> IdentityFile ~/.ssh/id_rsa-falcon
 > ForwardX11 yes
 > ForwardX11Trusted yes
 > ```
@@ -66,7 +66,7 @@ your password. But watch out, the characters you type are not displayed on the s
 > On Windows depending on software these settings can be set in the menu settings.
 > 
 > Alternatively use `PreferredAuthentications password` to force ssh to always use only a password.  This may be needed if ssh keys are available 
-> on your own computer but not used for Hawk and can trigger the banning of your machine when attempts with the keys are made.
+> on your own computer but not used for Falcon and can trigger the banning of your machine when attempts with the keys are made.
 >
 > Other option is `SetEnv LANG=C` can be useful if a locale setting on your desktop is not supported on Hawk for some reason and causes text encoding 
 > issues.
@@ -99,7 +99,7 @@ entire computing cluster. So what's really happening? What computer have we logg
 of the current computer we are logged onto can be checked with the `hostname` command. (You may also
 notice that the current hostname is also part of our prompt!)
 
-Hawk:
+Falcon:
 ```
 {{ site.host_prompt}} hostname
 ```
@@ -147,7 +147,7 @@ For example, we can view all of the worker nodes with the `{{ site.sched_info }}
 {{ site.host_prompt}} {{ site.sched_info }}
 ```
 {: .bash}
-Hawk:
+Falcon:
 ```
 {% include /snippets/12/info.snip %}
 ```
