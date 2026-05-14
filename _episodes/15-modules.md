@@ -38,7 +38,7 @@ researchers to prevent software versioning issues from affecting their results.
 Dependencies are where a particular software package (or even a particular version)
 depends on having access to another software package (or even a particular version of
 another software package). For example, the VASP materials science software may 
-depend on having a particular version of the FFTW (Fastest Fourer Transform in the West)
+depend on having a particular version of the FFTW (Fastest Fourier Transform in the West)
 software library available for it to work.
 
 ## Environment modules
@@ -90,26 +90,30 @@ To see available software modules, use `module avail`
 ```
 {: .output}
 
-There is also the possibility of loading inherited modules from old systems such as Raven and HPC Wales but this is not
-recommended and was only used to aide migration to Hawk.  Loading either ```raven``` and ```hpcw``` modules will
+There is also the possibility of loading inherited modules from old systems such as Hawk but this is not
+recommended and is only used to aide migration to Falcon.  Loading ```hawk``` modules will
 change the available modules.
 
 ## Loading and unloading software
 
 To load a software module, use `module load`.
-In this example we will use Python 3.
 
-Initially, Python 3 is not loaded. 
-We can test this by using the `which` command.
-`which` looks for programs the same way that Bash does,
-so we can use it to tell us where a particular piece of software is stored.
+In this example we will use Python 3. Initially, Falcon provides a default Python 3:
+```
+{{ site.host_prompt }} python --version
+Python 3.9.21
+```
+
+We can also look for the location where a particular program lives with the `which` command.
+`which` looks for programs the same way that Bash does, so we can use it to tell us where a particular piece of software is stored.
 
 ```
 {{ site.host_prompt }} which python3
 ```
 {: .bash}
+
 ```
-{% include /snippets/15/which_missing.snip %}
+/usr/bin/python
 ```
 {: .output}
 
@@ -175,7 +179,10 @@ Let's examine the output of `module avail` more closely.
 ```
 {: .bash}
 ```
-{% include /snippets/15/module_avail.snip %}
+....
+------------------- /shared/apps/easybuild/x86_64/amd/zen4/modules/toolchain -------------------
+   foss/2021b    foss/2023a    foss/2023b    foss/2024a    foss/2025a    foss/2025b (D)
+....
 ```
 {: .output}
 
