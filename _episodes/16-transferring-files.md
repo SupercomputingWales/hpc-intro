@@ -124,7 +124,7 @@ to transfer files.
 
 You can copy files to/from your Supercomputing Wales home and scratch locations using the secure copy protocol (SCP) or secure file transfer protocol (SFTP) and connecting to Hawk. 
 
-Open filezilla and type ```sftp://hawklogin.cf.ac.uk``` or ```sftp://sunbird.swansea.ac.uk``` into the host box. Enter your username and password in the username/password boxes.
+Open filezilla and type ```sftp://falconlogin.cf.ac.uk``` or ```sftp://sunbird.swansea.ac.uk``` into the host box. Enter your username and password in the username/password boxes.
 
 ![Transferring files using FileZilla](../fig/filezilla1.png)
 
@@ -146,7 +146,7 @@ Files can be transferred either by dragging and dropping them from one side to t
 ![Transferring files using FileZilla](../fig/filezilla5.png)
 ![Transferring files using FileZilla](../fig/filezilla6.png)
 
-You can change directory on the remote host by typing a path into the "Remote site:" box. For example type in ```/scratch/user.name``` (where user.name is your username) to access your scratch directory. 
+You can change directory on the remote host by typing a path into the "Remote site:" box. For example type in ```/scratch/SCWFXXXXX/``` to access your scratch directory. 
 
 ![Transferring files using FileZilla](../fig/filezilla7.png)
 
