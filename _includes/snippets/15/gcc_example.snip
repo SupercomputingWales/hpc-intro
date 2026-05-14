@@ -1,19 +1,35 @@
-Let's take a closer look at the `compiler/gnu` module. GCC is an extremely widely used C/C++/Fortran
-compiler. Tons of software is dependent on the GCC version, and might not compile or run if the
-wrong version is loaded. In this case, there are versions from: `compiler/gnu/4/8.5` to
-`compiler/gcc/9/2.0`. How do we load each copy and which copy is the default?
+Let's take a closer look at the `foss` module. The foss common compiler toolchain consists entirely
+of open source software (hence the name, derived from the common term 'FOSS', which is short for
+"Free and Open Source Software"). This module contains a GCC compiler, extremely widely used in 
+C/C++/Fortran programs. Tons of software is dependent on the GCC version, and might not compile or run if the
+wrong version is loaded. In this case, there are versions from: `foss/2021b` to
+`foss/2025b`. How do we know which copy is the default?
 
-In this case, `compiler/gcc/9/2.0` is the latest version. This indicates that it is the default - if we type
-`module load compiler/gnu`, this is the copy that will be loaded.
+In this case, `foss/2025b` is the latest version and is appended with a (D). This indicates that it is the
+default - if we type `module load `foss`, this is the copy that will be loaded.
 
 ```
-{{ site.host_prompt }} module load compiler/gnu
+{{ site.host_prompt }} module load foss
+{{ site.host_prompt }} module list
+Currently Loaded Modules:
+  1) GCCcore/14.3.0                      13) libfabric/2.1.0-GCCcore-14.3.0
+  2) zlib/1.3.1-GCCcore-14.3.0           14) PMIx/5.0.8-GCCcore-14.3.0
+  3) binutils/2.44-GCCcore-14.3.0        15) PRRTE/3.0.11-GCCcore-14.3.0
+  4) GCC/14.3.0                          16) UCC/1.4.4-GCCcore-14.3.0
+  5) numactl/2.0.19-GCCcore-14.3.0       17) OpenMPI/5.0.8-GCC-14.3.0
+  6) XZ/5.8.1-GCCcore-14.3.0             18) OpenBLAS/0.3.30-GCC-14.3.0
+  7) libxml2/2.14.3-GCCcore-14.3.0       19) FlexiBLAS/3.4.5-GCC-14.3.0
+  8) libpciaccess/0.18.1-GCCcore-14.3.0  20) FFTW/3.3.10-GCC-14.3.0
+  9) hwloc/2.12.1-GCCcore-14.3.0         21) gompi/2025b
+ 10) OpenSSL/3                           22) FFTW.MPI/3.3.10-gompi-2025b
+ 11) libevent/2.1.12-GCCcore-14.3.0      23) ScaLAPACK/2.2.2-gompi-2025b-fb
+ 12) UCX/1.19.0-GCCcore-14.3.0           24) foss/2025b
 {{ site.host_prompt }} gcc --version
 ```
 {: .bash}
 ```
-gcc (GCC) 9.2.0
-Copyright (C) 2019 Free Software Foundation, Inc.
+gcc (GCC) 14.3.0
+Copyright (C) 2024 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
@@ -21,40 +37,71 @@ warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 {: .output}
 
 This module system just loaded the GCC compilers into the environment, you can mix multiple compilers (if Intel C++
-requires a recent GCC compiler for C++ compatability) it can be done.  Some other module systems have more login
-available to automatically unload modules if conflicts are detected but not currently used on Hawk.
+requires a recent GCC compiler for C++ compatability) it can be done.  Falcon module system also have an 
+automatic unloading capability, in case conflicts are detected when loading a new module.
 
 Now lets switch to a new compiler. Either using:
 ```
-{{ site.host_prompt }} module unload compiler
-{{ site.host_prompt }} module load compiler/gnu/4/8.5
+{{ site.host_prompt }} module unload foss
+{{ site.host_prompt }} module load foss/2021b
 {{ site.host_prompt }} module list
+
+Currently Loaded Modules:
+  1) GCCcore/11.2.0                    12) UCX/1.11.2-GCCcore-11.2.0
+  2) zlib/1.2.11-GCCcore-11.2.0        13) libfabric/1.13.2-GCCcore-11.2.0
+  3) binutils/2.37-GCCcore-11.2.0      14) PMIx/4.1.0-GCCcore-11.2.0
+  4) GCC/11.2.0                        15) OpenMPI/4.1.1-GCC-11.2.0
+  5) numactl/2.0.14-GCCcore-11.2.0     16) OpenBLAS/0.3.18-GCC-11.2.0
+  6) XZ/5.2.5-GCCcore-11.2.0           17) FlexiBLAS/3.0.4-GCC-11.2.0
+  7) libxml2/2.9.10-GCCcore-11.2.0     18) gompi/2021b
+  8) libpciaccess/0.16-GCCcore-11.2.0  19) FFTW/3.3.10-gompi-2021b
+  9) hwloc/2.5.0-GCCcore-11.2.0        20) ScaLAPACK/2.1.0-gompi-2021b-fb
+ 10) OpenSSL/1.1                       21) foss/2021b
+ 11) libevent/2.1.12-GCCcore-11.2.0
+
 {{ site.host_prompt }} gcc --version
+gcc (GCC) 11.2.0
+Copyright (C) 2021 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 ```
 {: .bash}
 
 Alternatively using the `module switch` command.
 
 ```
-{{ site.host_prompt }} module switch compiler/gnu/4/8.5
+{{ site.host_prompt }} module switch foss/2021b
+
+The following have been reloaded with a version change:
+  1) FFTW/3.3.10-GCC-14.3.0 => FFTW/3.3.10-gompi-2021b
+  2) FlexiBLAS/3.4.5-GCC-14.3.0 => FlexiBLAS/3.0.4-GCC-11.2.0
+  3) GCC/14.3.0 => GCC/11.2.0
+  4) GCCcore/14.3.0 => GCCcore/11.2.0
+  5) OpenBLAS/0.3.30-GCC-14.3.0 => OpenBLAS/0.3.18-GCC-11.2.0
+  6) OpenMPI/5.0.8-GCC-14.3.0 => OpenMPI/4.1.1-GCC-11.2.0
+  7) OpenSSL/3 => OpenSSL/1.1
+  8) PMIx/5.0.8-GCCcore-14.3.0 => PMIx/4.1.0-GCCcore-11.2.0
+  9) ScaLAPACK/2.2.2-gompi-2025b-fb => ScaLAPACK/2.1.0-gompi-2021b-fb
+ 10) UCX/1.19.0-GCCcore-14.3.0 => UCX/1.11.2-GCCcore-11.2.0
+ 11) XZ/5.8.1-GCCcore-14.3.0 => XZ/5.2.5-GCCcore-11.2.0
+ 12) binutils/2.44-GCCcore-14.3.0 => binutils/2.37-GCCcore-11.2.0
+ 13) foss/2025b => foss/2021b
+ 14) gompi/2025b => gompi/2021b
+ 15) hwloc/2.12.1-GCCcore-14.3.0 => hwloc/2.5.0-GCCcore-11.2.0
+ 16) libevent/2.1.12-GCCcore-14.3.0 => libevent/2.1.12-GCCcore-11.2.0
+ 17) libfabric/2.1.0-GCCcore-14.3.0 => libfabric/1.13.2-GCCcore-11.2.0
+ 18) libpciaccess/0.18.1-GCCcore-14.3.0 => libpciaccess/0.16-GCCcore-11.2.0
+ 19) libxml2/2.14.3-GCCcore-14.3.0 => libxml2/2.9.10-GCCcore-11.2.0
+ 20) numactl/2.0.19-GCCcore-14.3.0 => numactl/2.0.14-GCCcore-11.2.0
+ 21) zlib/1.3.1-GCCcore-14.3.0 => zlib/1.2.11-GCCcore-11.2.0
+
 ```
 {: .bash}
 
-```
-Currently Loaded Modulefiles:
-  1) system/auto          2) compiler/gnu/4/8.5
 
-gcc (GCC) 4.8.5 20150623 (Red Hat 4.8.5-36)
-Copyright (C) 2015 Free Software Foundation, Inc.
-This is free software; see the source for copying conditions.  There is NO
-warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+We now have successfully switched from GCC 14.3.0 to GCC 11.2.0.
 
-```
-{: .output}
-
-We now have successfully switched from GCC 9.2.0 to GCC 4.8.5.
-
-Some modules have ```(default)``` at the end of the module listing in avail. For example for ```python```
+Some modules have ```(D)``` at the end of the module listing in avail. For example for ```python```
 
 ```
 {{ site.host_prompt }} module avail python
@@ -62,13 +109,18 @@ Some modules have ```(default)``` at the end of the module listing in avail. For
 {: .bash}
 ```
 
---------------------------- /apps/modules/languages ----------------------------
-python/3.5.9             python/3.7.7-intel2020u1 python-numpy/1.14.5
-python/3.6.3-intel2018u3 python-h5py/2.8.0        python-pyside/1.2.4
-python/3.6.9-intel2019u5 python-matplotlib/2.2.2  python-scipy/1.1.0
-python/3.7.0(default)    python-mayavi/4.6.0      python-vtk/8.1.0
+--------------------- /shared/apps/easybuild/x86_64/amd/zen4/modules/lang ----------------------
+   Python-bundle-PyPI/2023.06-GCCcore-12.3.0        Python/3.10.4-GCCcore-11.3.0
+   Python-bundle-PyPI/2023.10-GCCcore-13.2.0        Python/3.10.8-GCCcore-12.2.0-bare
+   Python-bundle-PyPI/2024.06-GCCcore-13.3.0        Python/3.10.8-GCCcore-12.2.0
+   Python-bundle-PyPI/2025.04-GCCcore-14.2.0        Python/3.11.3-GCCcore-12.3.0
+   Python-bundle-PyPI/2025.07-GCCcore-14.3.0 (D)    Python/3.11.5-GCCcore-13.2.0
+   Python/2.7.18-GCCcore-11.2.0                     Python/3.12.3-GCCcore-13.3.0
+   Python/3.9.6-GCCcore-11.2.0-bare                 Python/3.13.1-GCCcore-14.2.0
+   Python/3.9.6-GCCcore-11.2.0                      Python/3.13.5-GCCcore-14.3.0      (D)
+   Python/3.10.4-GCCcore-11.3.0-bare
 ```
 {: .output}
 
-In this case ```python/3.7.0``` is the default package.
+In this case ```Python/3.13.5-GCCcore-14.3.0``` is the default package.
 
